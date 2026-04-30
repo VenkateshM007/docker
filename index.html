@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Manager App</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #45a049;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    li {
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #f4f4f4;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    li.completed {
+        text-decoration: line-through;
+        background: #d3ffd3;
+    }
+
+    .filters {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .filters button {
+        margin: 5px;
+        background: #2196F3;
+    }
+
+    .filters button.active {
+        background: #0b7dda;
+    }
+
+    .delete-btn {
+        background: red;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Task Manager</h1>
+
+    <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Enter a task...">
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <div class="filters">
+        <button onclick="filterTasks('all')" class="active">All</button>
+        <button onclick="filterTasks('completed')">Completed</button>
+        <button onclick="filterTasks('pending')">Pending</button>
+    </div>
+</div>
+
+<script>
+    let tasks = [];
+    let currentFilter = "all";
+
+    function addTask() {
+        const input = document.getElementById("taskInput");
+        const text = input.value.trim();
+
+        if (text === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        tasks.push({
+            id: Date.now(),
+            text: text,
+            completed: false
+        });
+
+        input.value = "";
+        renderTasks();
+    }
+
+    function toggleTask(id) {
+        tasks = tasks.map(task =>
+            task.id === id ? { ...task, completed: !task.completed } : task
+        );
+        renderTasks();
+    }
+
+    function deleteTask(id) {
+        tasks = tasks.filter(task => task.id !== id);
+        renderTasks();
+    }
+
+    function filterTasks(filter) {
+        currentFilter = filter;
+
+        document.querySelectorAll(".filters button").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        event.target.classList.add("active");
+        renderTasks();
+    }
+
+    function renderTasks() {
+        const list = document.getElementById("taskList");
+        list.innerHTML = "";
+
+        let filteredTasks = tasks;
+
+        if (currentFilter === "completed") {
+            filteredTasks = tasks.filter(t => t.completed);
+        } else if (currentFilter === "pending") {
+            filteredTasks = tasks.filter(t => !t.completed);
+        }
+
+        filteredTasks.forEach(task => {
+            const li = document.createElement("li");
+            li.className = task.completed ? "completed" : "";
+
+            li.innerHTML = `
+                <span onclick="toggleTask(${task.id})">${task.text}</span>
+                <button class="delete-btn" onclick="deleteTask(${task.id})">X</button>
+            `;
+
+            list.appendChild(li);
+        });
+    }
+</script>
+
+</body>
+</html>
