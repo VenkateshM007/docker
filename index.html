@@ -1,64 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Rainbow Connect</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(120deg,
-                #ff0000, #ff9900, #ffff00,
-                #00cc00, #0099ff, #6633ff);
-            background-size: 400% 400%;
-            animation: rainbow 10s ease infinite;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<title>Hyderabad Office Locations</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #fff;
+    }
 
-        .container {
-            margin-top: 15%;
-            padding: 20px;
-        }
+    header {
+        background: linear-gradient(90deg, #2563eb, #06b6d4);
+        padding: 30px;
+        text-align: center;
+    }
 
-        h1 {
-            font-size: 3em;
-        }
+    header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+    }
 
-        p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
+    .container {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
 
-        .btn {
-            background: white;
-            color: black;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    .card {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s;
+    }
 
-        .btn:hover {
-            background: #000;
-            color: white;
-        }
-    </style>
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card h2 {
+        color: #38bdf8;
+        margin-top: 0;
+    }
+
+    .tag {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background: #2563eb;
+        border-radius: 20px;
+        font-size: 12px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: #0b1220;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+</style>
 </head>
+
 <body>
 
+<header>
+    <h1>🏢 Hyderabad Office Locations</h1>
+    <p>Top IT & Corporate Hubs in Hyderabad</p>
+</header>
+
 <div class="container">
-    <h1>🌈 Rainbow Connect</h1>
-    <p>A safe and inclusive space for everyone to connect, share, and support each other.</p>
-    <button class="btn">Join Community</button>
+
+    <div class="card">
+        <h2>HITEC City</h2>
+        <p>Major IT hub with global companies and tech parks.</p>
+        <span class="tag">IT Corridor</span>
+    </div>
+
+    <div class="card">
+        <h2>Madhapur</h2>
+        <p>Startup ecosystem with coworking spaces and tech offices.</p>
+        <span class="tag">Startup Hub</span>
+    </div>
+
+    <div class="card">
+        <h2>Gachibowli</h2>
+        <p>Financial & IT district with MNC corporate offices.</p>
+        <span class="tag">Corporate Zone</span>
+    </div>
+
+    <div class="card">
+        <h2>Financial District</h2>
+        <p>Premium office space area with global companies.</p>
+        <span class="tag">Premium</span>
+    </div>
+
+    <div class="card">
+        <h2>Kondapur</h2>
+        <p>Affordable office space with growing IT presence.</p>
+        <span class="tag">Budget Friendly</span>
+    </div>
+
 </div>
+
+<footer>
+    © 2026 Hyderabad Office Directory | Built with HTML & CSS
+</footer>
 
 </body>
 </html>
